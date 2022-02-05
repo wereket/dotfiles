@@ -1,0 +1,234 @@
+#!/bin/bash
+#  ██                       
+# ░██                       
+# ░██       ██████   ██████ 
+# ░██████  ░░░░░░██ ░░██░░█ 
+# ░██░░░██  ███████  ░██ ░  
+# ░██  ░██ ██░░░░██  ░██    
+# ░██████ ░░████████░███    
+# ░░░░░    ░░░░░░░░ ░░░     
+# nxll <nxll@teknik.io>
+
+#RESTART
+pkill lemonbar
+
+#COLORS
+fg="#91c5e0"
+bg="#33224a"
+fg2="#f98560"
+bg2="#F23535"
+
+hint="#14A1D9"
+nblk="#292927"
+bblk="#2E2E2C"
+nred="#939490"
+bred="#989995"
+ngrn="#5E5E5C"
+bgrn="#636361"
+nylw="#F28E13"
+bylw="#BBBDB8"
+nblu="#727370"
+bblu="#777875"
+nmag="#D1D1CB"
+bmag="#D6D6D0"
+ncyn="#636361"
+bcyn="#696966"
+nwht="#AAABA6"
+bwht="#AFB0AB"
+
+# Lemonpop
+notifybar_g="2560x26+0+0"
+LW=220
+LH=26
+LX=1690
+LY=45
+
+SEP1=" "
+SEP2="  "
+
+CLR="$SEP%{F-}%{B-}"
+
+# Char glyps for powerline fonts
+sep_left_corner=""
+sept_right_corner=""
+sep_left=""                        # Powerline separator left
+sep_right=""                       # Powerline separator right
+sep_l_left=""                      # Powerline light separator left
+sep_l_right=""                     # Powerline light sepatator right
+rightArrow="%{F$fg}\ue0b0%{F-}"
+leftArrow="%%{F$nwht}%{F-}"
+SEP_LEFT="%{B$fg2}%{F$bg2}  %{F-}%{B-}"
+
+## glyphs
+glymem=""
+glycpu=""
+# glybat=""
+glypkg=""
+glyclock=""
+glycal=""
+glyint=""
+glywin=""
+glywac=""
+glyw2=""
+glyw3=""
+glyw4=""
+glyw5=""
+glyw6=""
+glyw7=""
+
+#VARS
+font="-kakwa-kakwafont-medium-r-normal--12-120-72-72-c-60-iso8859-1"
+glyph="-wuncon-siji-medium-r-normal--10-100-75-75-c-80-iso10646-1"
+height=18
+border=8
+muslength=60
+interface=wls1
+#actchar="+"
+#selchar="+"
+#actchar=""
+#selchar=""
+
+if pgrep herbstluftwm; then
+	monitor=${1:-0}
+	bh=$(( $height + ($border * 2)))
+	herbstclient pad $monitor $bh
+fi
+
+WRK(){ # Current Workspace .. 
+  ws=`xprop -root _NET_CURRENT_DESKTOP | awk '{print $3}'`
+	case ${ws} in
+		0)echo -n "%{B$bg}%{F$bg2} main  %{F-}%{B-}";;
+		1)echo -n "%{B$bg}%{F$bg2} chat  %{F-}%{B-}";;
+		2)echo -n "%{B$bg}%{F$bg2} code  %{F-}%{B-}";;
+		3)echo -n "%{B$bg}%{F$bg2} media  %{F-}%{B-}";;
+		*)echo -n "%{B$bg}%{F$bg2} misc  %{F-}%{B-}";;
+	esac
+}
+
+
+WIN() {
+    #echo -n "%{B$hint}%{F$bg}  %{F-}%{B-}"
+	echo -n "%{B$bg}%{F$bg} $(wname $(pfw)) %{F-}%{B-}"
+}
+
+MEMORY(){
+  mem=$(free -m | awk 'NR==2 {print $3}')
+        mem+="MB"
+        #echo "%{F$BMAGENTA}  %{F-}${mem} RAM"
+	echo -n "%{B$nylw}%{F$bg}  $mem RAM %{F-}%{B-}"
+}
+
+
+MUSIC2(){ 
+      	mus=$(basename "$(mpc current)" | sed "s/^\(.*\)\..*$/\1/" | cut -c1-30 )
+
+  		if [[ $mus ]]; then
+			echo -n "%{F$bg}   $(basename "$(mpc current)" | sed "s/^\(.*\)\..*$/\1/" | cut -c1-30 )   %{F-}"
+  		fi
+}
+
+MUSIC() {
+	playing=$(mpc status | sed -n 2p | cut -c1-9)
+	
+		if [ "${playing}" = "[playing]" ]; then
+        	symbol="%{B$nylw} %{F$nylw}%{F-} %{B-}"
+			song="%{B$bg2} $(mpc current -f "%artist% - %title%" | cut -c1-$muslength) %{B-}"
+		elif [ ${playing} = "[paused]" ]; then
+			symbol="%{B$nylw} %{F$bg}%{F-} %{B-}"
+			song="%{B$nylw} $(mpc current -f "%artist% - %title%" | cut -c1-$muslength) %{B-}"
+		elif [ ! "${playing}" = "[playing]" ]; then
+			symbol="%{B$bg} %{F$bg}%{F-} %{B-}"
+			song="%{B$bg ··· %{B-}"
+		fi
+
+    echo -n "${song}"
+}
+
+
+VOL() {
+	getvol=$(pactl list sinks | grep '^[[:space:]]Volume:' | head -n $(( $SINK + 1  )) | tail -n 1 | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,')
+	
+	echo -n "%{B$nylw}  %{B$nylw} $getvol% %{B-}"
+}
+
+#BAT() {
+#    percent=$(cat /sys/class/power_supply/BAT0/capacity)
+#    status=$(cat /sys/class/power_supply/BAT0/status)
+
+#    if test $status = "Charging"; then
+#        symbol=""
+#        echo -n "%{B$bblk} ${symbol} %{B-}"
+#    elif test $status = "Full"; then
+#        symbol=""
+#        echo -n "%{B$bblk} ${symbol} %{B-}"
+#    else
+#        if test $percent -gt 66; then
+#            symbol=""
+#            echo -n "%{B$bblk} ${symbol} %{B-}"
+#        elif test $percent -gt 34; then
+#            symbol=""
+#            echo -n "%{B$bblk} ${symbol} %{B-}"
+#        else
+#		symbol=""
+#            echo -n "%{B$bblk} ${symbol} %{B-}"
+#        fi
+#    fi
+
+#	echo -e "%{B$nblk} $percent% %{B-}"
+#}
+
+ROOT(){
+	hdroot="$(df -h / | tail -n 1 | awk '{print $4}')"
+	echo -n "%{B$nylw}%{F$bg}  root  $hdroot free %{F-}%{B-}"
+
+}
+
+
+CPU(){ # CPUs temp ..
+  cpuload=$(echo $[100-$(vmstat 1 2|tail -1|awk '{print $15}')])
+  cpuload+="%"
+	echo -n "%{B$nylw}%{F$bg} $glycpu $cpuload %{F-}%{B-}"
+	
+}
+
+WINDOWTITLE(){
+	# Grabs focused window's title
+	# The echo "" at the end displays when no windows are focused.
+	title=$(xdotool getactivewindow getwindowname 2>/dev/null || echo "Hi")
+	echo -n "%{B$nylw}%{F$bg} $SEP2$title" | cut -c 1-50 # Limits the output to a maximum # of chars
+}
+
+NET() {
+	ping=`ping 8.8.8.8 -c 1 | awk '/rtt/ {printf("%d\n",$4 + 0.5)}'`
+	test -n "${ping}" && echo -n "%{B$nylw} %{F$bg}  network %{F-}%{B-}" || echo "%{F$bred}   %{F-} No Connection"
+          
+	echo 
+}
+
+DATE() {
+    echo -n "%{B$nylw} %{F$bg}   $(date "+%a %d.%m")%{F-} %{B-}"
+}
+
+CLOCK() {
+    echo -n "%{F$bg}%{B$nylw}   $(date "+%H:%M") %{F-}%{B-}"
+}
+
+BAR() {
+    #ADD ALL THE THINGS
+    while true; do
+      buf=" $(WRK)$(WINDOWTITLE) %{c} $(MUSIC2)  %{r}$(ROOT)$SEP1$(NET)$SEP1$(MEMORY)$SEP1$(CPU)$SEP1$(DATE)$SEP1$(CLOCK)" 
+		echo "$buf"	
+        sleep 0.1
+    done | lemonbar -f "Font Awesome:regular:bold:size=11" \
+        -f "$font" \
+        -F "$fg" \
+        -B "$bg" \
+        -d \
+	-p \
+        -g $notifybar_g | sh &
+}
+
+BAR > /dev/null
+
+
+
