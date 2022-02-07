@@ -6,4 +6,4 @@
 # /export	192.168.1.10(rw,no_root_squash)
 
  
-/media/usb-drive	192.168.0.193(rw,no_root_squash,sync,nohide)
+#/media/usb-drive	192.168.0.193(rw,no_root_squash,sync,nohide)
