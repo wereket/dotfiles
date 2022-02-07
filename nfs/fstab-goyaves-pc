@@ -15,7 +15,7 @@ UUID=7c34e9b9-5506-45c9-9378-5ac673ffe66c	/data     	ext4      	rw,relatime,data
 UUID=a2d8fd97-13e5-4474-8279-c188639c3479	none      	swap      	defaults  	0 0
 
 # ntfs usb drive
-UUID="0D7E6AF070ADF1DD"				/media/usb-drive ntfs		defaults	0 0 
+/dev/sdb1				/media/usb-drive	ntfs nls-utf8,umask-0222,uid-1000,gid-1000,ro 0 0 
 
 #firefox /home/dagnachew/.mozilla/firefox/447hkoly.default tmpfs size=4096M,noauto,user,exec,uid=1000,gid=1000 0 0
 
