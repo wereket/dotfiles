@@ -7,6 +7,6 @@ UUID="3EE6-84C7" /boot/efi vfat defaults 0 0
 #UUID="0D7E6AF070ADF1DD" /media/usb-drive ntfs  defaults 	0 0
 
 # nfs share
-192.168.0.193:/data	/media/goyaves-home-data nfs	defaults	0 0
-192.168.0.193:/media/usb-drive	/media/usb-drive nfs	defaults	0 0 
+192.168.0.193:/data /media/goyaves-home-data nfs rw,hard 0 0 
+192.168.0.193:/media/usb-drive	/media/usb-drive nfs rw,hard 0 0
 
