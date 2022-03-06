@@ -6,7 +6,7 @@ Xft.autohint: true
 Xft.hintstyle: hintfull
 Xft.lcdfilter: lcdfilter
 
-emacs.geometry: 144x72
+emacs.geometry: 192x80
 
 XTerm*renderFont: true
 XTerm*faceName: xft:Mononoki Nerd Font, \
