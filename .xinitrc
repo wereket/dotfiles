@@ -14,7 +14,7 @@
 # merge custom x resources
 [ -f ~/.Xresources ] && xrdb -merge -I$HOME ~/.Xresources
 
-xset +fp /usr/share/fonts/local &
+xset +fp /usr/share/fonts/ &
 xset fp rehash &
 
 # Accent comose key
@@ -26,8 +26,10 @@ nitrogen --restore &
 
 numlockx &
 
-# mpd
 mpd ~/.config/mpd/mpd.conf
+
+pipewire &
+pipewire-pulse &
 
 wal -R
 
@@ -40,5 +42,5 @@ wmname LG3D
 
 xmodmap ~/.Xmodmap 
 
-~/scripts/2bwmbar &
-exec dbus-run-session 2bwm 
+~/scripts/bar/2bwmbar2 &
+exec dbus-run-session 2bwm
