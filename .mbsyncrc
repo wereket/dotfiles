@@ -6,7 +6,7 @@ IMAPAccount gmail
 Host imap.gmail.com
 User dagnachewa@gmail.com
 #PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/dagnachewa@gmail.com.gpg"
-PassCmd "pass google/apppassword"
+PassCmd "pass gmail/apppassword"
 AuthMechs LOGIN
 SSLType IMAPS
 SSLVersions TLSv1.3
