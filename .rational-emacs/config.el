@@ -25,15 +25,22 @@
 (require 'rational-org)         ; org-appear, clickable hyperlinks etc.
 (require 'rational-project)     ; built-in alternative to projectile
 (require 'rational-speedbar)    ; built-in file-tree
-(require 'rational-programming) ; programming module
 (require 'rational-screencast)  ; show current command and binding in modeline
 (require 'rational-compile)     ; automatically compile some emacs lisp files
+(require 'init-java)
+(require 'init-julia)
+(require 'init-ein)
+(require 'init-elixir)
+(require 'init-erlang)
+(require 'init-ocaml)
+(require 'init-ruby)
 
 (custom-set-variables
    '(rational-ui-default-font
      '(:font "JetBrains Mono" :weight normal :height 185)))
 
 (rational-package-install-package 'doom-themes)
+(require 'base16-theme)
 (load-theme 'base16-tomorrow t)
 
 ;; To not load `custom.el' after `config.el', uncomment this line.
