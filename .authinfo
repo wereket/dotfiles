@@ -1,0 +1,3 @@
+machine imap.gmail.com login dagnachewa@gmail.com password zzxocxeoflpdsdgh port imaps
+machine smtp.gmail.com login dagnachewa@gmail.com password zzxocxeoflpdsdgh port 587
+machine irc.libera.chat login perrierjouet passwd HuIt*HuIt=64 port 6697
