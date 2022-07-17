@@ -6,7 +6,7 @@
  '(custom-safe-themes
    '("addd88a26e5c7565601cfd1befa0ba84889ac5dfe010ddfcde99a8738003bec5" default))
  '(package-selected-packages
-   '(ess-view-data lsp-java quelpa-use-package quelpa org-ql ox-leanpub modern-cpp-font-lock base16-theme go-mode rust-mode ess-R-data-view ess-view ess dired-icon modus-themes doom-themes keycast org-appear helpful elisp-demos doom-modeline all-the-icons vertico orderless marginalia embark-consult embark corfu-doc consult cape use-package)))
+   '(ess-r-insert-obj ess-view-data lsp-java quelpa-use-package quelpa org-ql ox-leanpub modern-cpp-font-lock base16-theme go-mode rust-mode ess-R-data-view ess-view ess dired-icon modus-themes doom-themes keycast org-appear helpful elisp-demos doom-modeline all-the-icons vertico orderless marginalia embark-consult embark corfu-doc consult cape use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
