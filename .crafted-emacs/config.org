@@ -113,6 +113,15 @@ loading a different theme from the venerable Doom Emacs project.
     (load-theme 'modus-operandi t))       ; load the doom-palenight theme
 #+end_src
 
+* Dired
+#+begin_src emacs-lisp
+(use-package dirvish
+  :ensure t
+  :init
+  ;; Let Dirvish take over Dired globally
+  (dirvish-override-dired-mode))
+#+end_src
+
 * Custom.el
 By default, Crafted Emacs keeps your config file clean. All the customization
 settings that Emacs normally automatically adds to your config.el go into

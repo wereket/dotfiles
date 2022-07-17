@@ -54,5 +54,11 @@
   (disable-theme 'deeper-blue)          ; first turn off the deeper-blue theme
   (load-theme 'modus-operandi t))       ; load the doom-palenight theme
 
+(use-package dirvish
+  :ensure t
+  :init
+  ;; Let Dirvish take over Dired globally
+  (dirvish-override-dired-mode))
+
 ;; To not load `custom.el' after `config.el', uncomment this line.
 ;; (setq crafted-load-custom-file nil)

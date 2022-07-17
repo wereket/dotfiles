@@ -59,19 +59,19 @@ in the line about =crafted-evil= below.
   (require 'crafted-speedbar)    ; built-in file-tree
   (require 'crafted-screencast)  ; show current command and binding in modeline
   (require 'crafted-compile)     ; automatically compile some emacs lisp files
-  ;;(require 'crafted-markup)      ; markup language settings
+  (require 'crafted-markup)      ; markup language settings
   (require 'crafted-ide)         ; IDE config
-  ;;(require 'crafted-cc++)        ; CC++ development
+  (require 'crafted-cc++)        ; CC++ development
   (require 'crafted-lisp)        ; Lisp development
-  ;;(require 'crafted-ocaml)       ; Ocaml development
+  (require 'crafted-ocaml)       ; Ocaml development
   (require 'crafted-python)      ; Python development
-  ;;(require 'crafted-elm)         ; Elm development
-  ;;(require 'crafted-elixir)      ; Elixir development
-  ;;(require 'crafted-erlang)      ; Erlang development
-  ;;(require 'crafted-ess)         ; statistics development
-  ;;(require 'crafted-java)        ; Java development
-  ;;(require 'crafted-go)          ; Go development
-  ;;(require 'crafted-rust)        ; Rust development
+  (require 'crafted-elm)         ; Elm development
+  (require 'crafted-elixir)      ; Elixir development
+  (require 'crafted-erlang)      ; Erlang development
+  (require 'crafted-ess)         ; statistics development
+  (require 'crafted-java)        ; Java development
+  (require 'crafted-go)          ; Go development
+  (require 'crafted-rust)        ; Rust development
   #+end_src
 
 * Font and theme settings
