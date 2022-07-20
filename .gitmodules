@@ -3,4 +3,4 @@
 	url = https://github.com/SystemCrafters/rational-emacs
 [submodule ".emacs.d"]
 	path = .emacs.d
-	url = https://github.com/wereket/emacs
+	url = https://github.com/wereket/lambda-emacs
